@@ -1,5 +1,6 @@
 #include "adma_tools_cpp/bag2gsdb_converter.hpp"
 #include <rclcpp_components/register_node_macro.hpp>
+#include <iomanip>
 
 namespace genesys
 {
@@ -35,10 +36,14 @@ Bag2GSDBConverter::~Bag2GSDBConverter(){
         gdsbFile_.close();
 }
 
-void Bag2GSDBConverter::rawDataCallback(adma_ros_driver_msgs::msg::AdmaDataRaw newMsg)
+void Bag2GSDBConverter::rawDataCallback(
+    const adma_ros_driver_msgs::msg::AdmaDataRaw::SharedPtr newMsg)
 {
-        msgCounter_++;
-        gdsbFile_.write((const char*) &newMsg.raw_data[0], newMsg.raw_data.size());
+    msgCounter_++;
+
+    gdsbFile_.write(
+        reinterpret_cast<const char*>(&newMsg->raw_data[0]),
+        newMsg->raw_data.size());
 }
 }// end namespace tools
 }// end namespace genesys

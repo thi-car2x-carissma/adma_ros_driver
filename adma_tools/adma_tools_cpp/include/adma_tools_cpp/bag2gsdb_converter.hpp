@@ -14,7 +14,8 @@ class Bag2GSDBConverter : public rclcpp::Node
                 explicit Bag2GSDBConverter(const rclcpp::NodeOptions &options);
                 virtual ~Bag2GSDBConverter();
         private:
-                void rawDataCallback(adma_ros_driver_msgs::msg::AdmaDataRaw newMsg);
+                //void rawDataCallback(adma_ros_driver_msgs::msg::AdmaDataRaw newMsg);
+                void rawDataCallback(const adma_ros_driver_msgs::msg::AdmaDataRaw::SharedPtr newMsg);
 
                 rclcpp::Subscription<adma_ros_driver_msgs::msg::AdmaDataRaw>::SharedPtr subRawData_;
                 std::string filePath_;

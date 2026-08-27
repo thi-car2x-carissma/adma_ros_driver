@@ -1,5 +1,5 @@
 #include "adma_ros2_driver/parser/adma2ros_parser_v333.hpp"
-
+#include <sstream>
 #include "adma_ros2_driver/parser/parser_utils.hpp"
 
 ADMA2ROSParserV333::ADMA2ROSParserV333() {}
